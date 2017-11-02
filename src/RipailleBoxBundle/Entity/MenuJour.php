@@ -2,17 +2,19 @@
 
 namespace RipailleBoxBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="menu_jour")
+ * @ORM\Table(name="rb_menu_jour")
  * @ORM\Entity(repositoryClass="RipailleBoxBundle\Repository\MenuJourRepository")
  */
 class MenuJour
 {
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_menu_jour", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,6 +26,23 @@ class MenuJour
      */
     private $date;
 
+    /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Repas")
+     * @ORM\JoinTable(name="rb_repas_par_menu",
+     *      joinColumns={@ORM\JoinColumn(name="menu_jour_id", referencedColumnName="id_menu_jour")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="repas_id", referencedColumnName="id_repas")}
+     *      )
+     */
+    private $listeRepas;
+
+    /**
+     * MenuJour constructor.
+     */
+    public function __construct()
+    {
+        $this->listeRepas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -51,5 +70,31 @@ class MenuJour
     {
         return $this->date;
     }
-}
 
+    /**
+     * @param Repas $repas
+     * @return MenuJour
+     */
+    public function addRepas(Repas $repas)
+    {
+        $this->listeRepas[] = $repas;
+
+        return $this;
+    }
+
+    /**
+     * @param Repas $repas
+     */
+    public function removeRepas(Repas $repas)
+    {
+        $this->listeRepas->removeElement($repas);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getListeRepas()
+    {
+        return $this->listeRepas;
+    }
+}

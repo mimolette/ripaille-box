@@ -2,17 +2,19 @@
 
 namespace RipailleBoxBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="categorie")
+ * @ORM\Table(name="rb_categorie")
  * @ORM\Entity(repositoryClass="RipailleBoxBundle\Repository\CategorieRepository")
  */
 class Categorie
 {
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_categorie", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -32,10 +34,23 @@ class Categorie
 
     /**
      * @var string
-     * @ORM\Column(name="couleurFond", type="string", length=10)
+     * @ORM\Column(name="couleur_fond", type="string", length=10)
      */
     private $couleurFond;
 
+    /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Ingredient", mappedBy="categories")
+     */
+    private $ingredients;
+
+    /**
+     * Categorie constructor.
+     */
+    public function __construct()
+    {
+        $this->ingredients = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -101,5 +116,31 @@ class Categorie
     {
         return $this->couleurFond;
     }
-}
 
+    /**
+     * @param Ingredient $ingredient
+     * @return Categorie
+     */
+    public function addIngredient(Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * @param Ingredient $ingredient
+     */
+    public function removeIngredient(Ingredient $ingredient)
+    {
+        $this->ingredients->removeElement($ingredient);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+}

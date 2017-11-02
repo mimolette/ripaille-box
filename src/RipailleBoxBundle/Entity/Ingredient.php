@@ -2,17 +2,19 @@
 
 namespace RipailleBoxBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="ingredient")
+ * @ORM\Table(name="rb_ingredient")
  * @ORM\Entity(repositoryClass="RipailleBoxBundle\Repository\IngredientRepository")
  */
 class Ingredient
 {
     /**
      * @var int
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_ingredient", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -30,6 +32,23 @@ class Ingredient
      */
     private $nomComparaison;
 
+    /**
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Categorie", inversedBy="ingredients")
+     * @ORM\JoinTable(name="rb_categorie_par_ingredient",
+     *      joinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id_ingredient")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="categorie_id", referencedColumnName="id_categorie")}
+     *      )
+     */
+    private $categories;
+
+    /**
+     * Categorie constructor.
+     */
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -76,5 +95,31 @@ class Ingredient
     {
         return $this->nomComparaison;
     }
-}
 
+    /**
+     * @param Categorie $categorie
+     * @return Ingredient
+     */
+    public function addCategorie(Categorie $categorie)
+    {
+        $this->categories[] = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @param Categorie $categorie
+     */
+    public function removeCategorie(Categorie $categorie)
+    {
+        $this->categories->removeElement($categorie);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}
