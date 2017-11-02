@@ -1,11 +1,11 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "ripaille-box",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "RipailleBoxBundle\\": "src/RipailleBoxBundle"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
