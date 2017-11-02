@@ -1,0 +1,9 @@
+services:
+    rb.dao.master:
+        class: RipailleBoxBundle\Service\DAO\AbstractMasterDao
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    rb.dao.categorie:
+        class: RipailleBoxBundle\Service\DAO\CategorieDao
+        parent: rb.dao.master
