@@ -27,6 +27,12 @@ class MenuJour
     private $date;
 
     /**
+     * @var int
+     * @ORM\Column(name="id_utilisateur", type="integer")
+     */
+    private $idUtilisateur;
+
+    /**
      * @var Collection
      * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Repas")
      * @ORM\JoinTable(name="rb_repas_par_menu",
@@ -96,5 +102,23 @@ class MenuJour
     public function getListeRepas()
     {
         return $this->listeRepas;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * @param int $idUtilisateur
+     * @return Categorie
+     */
+    public function setIdUtilisateur($idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+        return $this;
     }
 }

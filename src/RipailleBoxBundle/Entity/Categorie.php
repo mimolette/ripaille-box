@@ -39,6 +39,12 @@ class Categorie
     private $couleurFond;
 
     /**
+     * @var int
+     * @ORM\Column(name="id_utilisateur", type="integer")
+     */
+    private $idUtilisateur;
+
+    /**
      * @var Collection
      * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Ingredient", mappedBy="categories")
      */
@@ -142,5 +148,23 @@ class Categorie
     public function getIngredients()
     {
         return $this->ingredients;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * @param int $idUtilisateur
+     * @return Categorie
+     */
+    public function setIdUtilisateur($idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+        return $this;
     }
 }

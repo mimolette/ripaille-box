@@ -27,10 +27,10 @@ class Ingredient
     private $nom;
 
     /**
-     * @var string
-     * @ORM\Column(name="nomComparaison", type="string", length=100, unique=true)
+     * @var int
+     * @ORM\Column(name="id_utilisateur", type="integer")
      */
-    private $nomComparaison;
+    private $idUtilisateur;
 
     /**
      * @var Collection
@@ -78,22 +78,21 @@ class Ingredient
     }
 
     /**
-     * @param string $nomComparaison
-     * @return Ingredient
+     * @return int
      */
-    public function setNomComparaison($nomComparaison)
+    public function getIdUtilisateur()
     {
-        $this->nomComparaison = $nomComparaison;
-
-        return $this;
+        return $this->idUtilisateur;
     }
 
     /**
-     * @return string
+     * @param int $idUtilisateur
+     * @return Categorie
      */
-    public function getNomComparaison()
+    public function setIdUtilisateur($idUtilisateur)
     {
-        return $this->nomComparaison;
+        $this->idUtilisateur = $idUtilisateur;
+        return $this;
     }
 
     /**

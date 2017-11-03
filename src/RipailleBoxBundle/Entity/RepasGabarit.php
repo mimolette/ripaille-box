@@ -27,6 +27,12 @@ class RepasGabarit
     private $type;
 
     /**
+     * @var int
+     * @ORM\Column(name="id_utilisateur", type="integer")
+     */
+    private $idUtilisateur;
+
+    /**
      * @var Collection
      * @ORM\ManyToMany(targetEntity="RipailleBoxBundle\Entity\Categorie")
      * @ORM\JoinTable(name="rb_categories_par_gabarit",
@@ -96,5 +102,23 @@ class RepasGabarit
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUtilisateur()
+    {
+        return $this->idUtilisateur;
+    }
+
+    /**
+     * @param int $idUtilisateur
+     * @return Categorie
+     */
+    public function setIdUtilisateur($idUtilisateur)
+    {
+        $this->idUtilisateur = $idUtilisateur;
+        return $this;
     }
 }
