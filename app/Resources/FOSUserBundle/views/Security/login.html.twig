@@ -1,0 +1,49 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <form
+        class="ui form"
+        id="loginForm"
+        action="{{ path("fos_user_security_check") }}"
+        method="post">
+
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <div class="field">
+            <div class="ui left icon input">
+                <input type="text"
+                       id="username"
+                       name="_username"
+                       value="{{ last_username }}"
+                       placeholder="indentifiant..."
+                       required="required" />
+                <i class="user icon"></i>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <input type="password"
+                       id="password"
+                       name="_password"
+                       placeholder="mot de passe..."
+                       required="required" />
+                <i class="lock icon"></i>
+            </div>
+        </div>
+
+        <div class="message-error">
+            {% if error %}
+                <div class="ui visible message error">
+                    Les informations de connexion saisies sont incorrectes !
+                </div>
+            {% endif %}
+        </div>
+
+        <button class="ui right labeled icon fluid green button">
+            <i class="right arrow icon"></i>
+            Connexion
+        </button>
+    </form>
+{% endblock %}
+

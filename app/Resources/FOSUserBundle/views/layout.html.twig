@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Ripaille Box{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset('vendor/semantic/dist/semantic.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/ripaillebox/css/login.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="logoBlk">
+            <img src="{{ asset('bundles/ripaillebox/images/logo.png') }}" alt="ripaille box logo">
+            <h1>Ripaille Box</h1>
+        </div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+        <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/semantic/dist/semantic.min.js') }}"></script>
+    </body>
+</html>

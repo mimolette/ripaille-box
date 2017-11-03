@@ -42,3 +42,5 @@
 .idea/*
 /vendor/
 composer.lock
+var/SymfonyRequirements.php
+web/vendor/

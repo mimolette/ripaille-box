@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm {
+    width: 500px !important;
+    background-color: #f9f9f9;
+    box-shadow: 1px 1px 5px #e7e7e7,
+                -1px -1px 5px #e7e7e7;
+    padding: 1em !important;
+    border-radius: 0.35em;
+}
+
+#logoBlk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+#logoBlk img {
+    width: 15em;
+    margin-bottom: 2em;
+}
+
+#logoBlk h1 {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 2.5em;
+    font-weight: 400;
+    color: #646464;
+}
+
+.message-error {
+    margin-bottom: 1em;
+    min-height: 39px;
+}
+
+@media (max-width: 1040px) {
+    #logoBlk img {
+        width: 12em;
+        margin-bottom: 1.8em;
+    }
+
+    #logoBlk h1 {
+        font-size: 2.3em;
+    }
+
+    #logoBlk {
+        margin-top: -200px;
+        margin-bottom: 2.7em;
+    }
+}
+
+@media (max-width: 800px) {
+    #logoBlk img {
+        width: 10em;
+        margin-bottom: 1.5em;
+    }
+
+    #logoBlk h1 {
+        font-size: 2em;
+    }
+
+    #logoBlk {
+        margin-top: -300px;
+        margin-bottom: 2.25em;
+    }
+}
